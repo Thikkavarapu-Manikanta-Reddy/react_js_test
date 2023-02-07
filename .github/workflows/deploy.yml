@@ -22,6 +22,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: google-github-actions/deploy-appengine@v0.2.0
+    - run: npm i
+    - run: npm run build --if-present
       with:         
         project_id: ${{ secrets.GCP_PROJECT }}
         credentials: ${{ secrets.GCP_CREDENTIALS }}
@@ -30,6 +32,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
-    - run: npm run build --if-present
         
